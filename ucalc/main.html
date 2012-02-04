@@ -15,7 +15,7 @@
     alert("hi");
     }
 
-    operator = '+';
+    operator = '.';
     prevResult = 0;
     display = 0;
     operand = 0;
@@ -33,6 +33,7 @@
              case '+':
              case '-':
              case '*':
+	     case '.':
              case '/':return Status.Op;
              case '=': return Status.Eq;
             default:
@@ -44,17 +45,19 @@
              case '+': return (inputResult+inputDisplay);
              case '-': return (inputResult-inputDisplay);  
              case '*': return (inputResult*inputDisplay);
-             case '/': return (inputResult/inputDisplay);      
+             case '/': return (inputResult/inputDisplay);
+	     case '.': return (inputDisplay);       
          }
     }
     function update (input) 
     {
    
     if (input == 'c'){
-    operator = '+';
+    operator = '.';
     prevResult = 0;
     display = 0;
     prevInput = Status.Eq;
+    document.getElementById("textbar").innerHTML = display;
     return;
     }
     switch(prevInput)
@@ -99,7 +102,7 @@
             case Status.Num:
                  display = Number(input);
                  prevResult = 0;
-                 operator = '+';
+                 operator = '.';
                  break;
             case Status.Op:
                  prevResult = display;
@@ -131,21 +134,21 @@ p {font-size:0.875em;}
   <table>
     <tr>
       <td><button type="button" accesskey=S onclick= update(7) value='7'><font size =6>7</font</button></td>
-      <td><button type="button" accesskey=8 onclick= update(8) value='8'>8</button></td>
-      <td><button type="button" accesskey='9' onclick= update(9) value='9'>9</button></td>
-      <td><button type="button" accesskey='/' onclick= update('/') value='/'>/</button></td>
-      </tr><tr><td><button type="button" accesskey='4' onclick= update(4) value='4'>4</button></td>
-      <td><button type="button" accesskey='5' onclick= update(5) value='5'>5</button></td>
-      <td><button type="button" accesskey='6' onclick= update(6) value='6'>6</button></td>
-      <td><button type="button" accesskey='*' onclick= update('*') value='*'>*</button></td>
-      </tr><tr><td><button type="button" accesskey='1' onclick= update(1) value='1'>1</button></td>
-      <td><button type="button" accesskey='2' onclick= update(2) value='2'>2</button></td>
-      <td><button type="button" accesskey='3' onclick= update(3) value='3'>3</button></td>   
-      <td><button type="button" accesskey='-' onclick= update('-') value='-'>-</button></td>
-      </tr><tr><td><button type="button" accesskey='0' onclick= update(0) value='0'>0</button></td>
-      <td><button type="button" accesskey='=' onclick= update('=') value='='>=</button></td>
-      <td><button type="button" accesskey='c' onclick= update('c') value='c'>C</button></td>
-      <td><button type="button" accesskey='+' onclick= update('+') value='+'>+</button></td>  
+      <td><button type="button" accesskey=8 onclick= update(8) value='8'><font size =6>8</button></td>
+      <td><button type="button" accesskey='9' onclick= update(9) value='9'><font size =6>9</button></td>
+      <td><button type="button" accesskey='/' onclick= update('/') value='/'><font size =6>/</button></td>
+      </tr><tr><td><button type="button" accesskey='4' onclick= update(4) value='4'><font size =6>4</button></td>
+      <td><button type="button" accesskey='5' onclick= update(5) value='5'><font size =6>5</button></td>
+      <td><button type="button" accesskey='6' onclick= update(6) value='6'><font size =6>6</button></td>
+      <td><button type="button" accesskey='*' onclick= update('*') value='*'><font size =6>*</button></td>
+      </tr><tr><td><button type="button" accesskey='1' onclick= update(1) value='1'><font size =6>1</button></td>
+      <td><button type="button" accesskey='2' onclick= update(2) value='2'><font size =6>2</button></td>
+      <td><button type="button" accesskey='3' onclick= update(3) value='3'><font size =6>3</button></td>   
+      <td><button type="button" accesskey='-' onclick= update('-') value='-'><font size =6>-</button></td>
+      </tr><tr><td><button type="button" accesskey='0' onclick= update(0) value='0'><font size =6>0</button></td>
+      <td><button type="button" accesskey='=' onclick= update('=') value='='><font size =6>=</button></td>
+      <td><button type="button" accesskey='c' onclick= update('c') value='c'><font size =6>C</button></td>
+      <td><button type="button" accesskey='+' onclick= update('+') value='+'><font size =6>+</button></td>  
 	</tr></table>
 <center>
 </body>
