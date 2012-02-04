@@ -1,0 +1,14 @@
+{
+  "name": "Calculator",
+  "description": "The awesomest calculator in the Universe",
+  "version": "1",
+  "app": {
+    "launch": {
+      "local_path": "main.html"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "128": "icon.png"
+  }
+}
