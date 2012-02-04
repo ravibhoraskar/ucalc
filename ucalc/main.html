@@ -1,33 +1,132 @@
 <head>
-	<script type="text/javascript">
-	var Status =
-	{
-		Num:0;
-		Op:1;
-		Eq:2;
-	}
+  <script type="text/javascript">
+    function up()
+    {
+    alert("hi");
+    }
 
-	function update (input) 
-			{
-				switch(prevInput)
-				{
-					case Status.Num:
-						
-				}
-				
-			  }
-	</script>
+    operator = '+';
+    prevResult = 0;
+    display = 0;
+    operand = 0;
+    Status =
+    {
+    Num:0,
+    Op:1,
+    Eq:2
+    };
+    
+    prevInput = Status.Eq;
+
+    function getStatus(input){
+          switch(input){
+             case '+':
+             case '-':
+             case '*':
+             case '/':return Status.Op;
+             case '=': return Status.Eq;
+            default:
+               return Status.Num;
+          }
+    }
+    function calc(inputDisplay,inputOperator,inputResult){
+         switch(inputOperator){
+             case '+': return (inputResult+inputDisplay);
+             case '-': return (inputResult-inputDisplay);  
+             case '*': return (inputResult*inputDisplay);
+             case '/': return (inputResult/inputDisplay);      
+         }
+    }
+    function update (input) 
+    {
+   
+    if (input == 'c'){
+    operator = '+';
+    prevResult = 0;
+    display = 0;
+    prevInput = Status.Eq;
+    return;
+    }
+    switch(prevInput)
+    {
+    case Status.Num:
+         switch(getStatus(input)){
+            case Status.Num:
+                
+                 display = Number(display)*10+Number(input);
+                 
+                 break;
+            case Status.Op:
+                 operand = display;
+                 display = calc(operand,operator,prevResult)
+                 prevResult = display;
+                 operator = input;
+                 break;
+            case Status.Eq:
+                 operand = display;
+                 display = calc(operand,operator,prevResult)
+                 prevResult = display;
+                 break;
+          }
+         break;
+    case Status.Op:
+         switch(getStatus(input)){
+            case Status.Num:
+                 display = Number(input);
+                 break;
+            case Status.Op:
+                 operator = input;
+                 break;
+            case Status.Eq:
+                 operand = display;
+                 display = calc(operand,operator,prevResult)
+                 prevResult = display;
+                 break;
+          }
+        break;
+    case Status.Eq:
+        switch(getStatus(input)){
+            case Status.Num:
+                 display = Number(input);
+                 prevResult = 0;
+                 operator = '+';
+                 break;
+            case Status.Op:
+                 prevResult = display;
+                 operator = input;
+                 break;
+            case Status.Eq:
+                 display = calc(operand,operator,prevResult)
+                 prevResult = display;
+                 break;
+          }
+        break;
+    }
+   document.getElementById("textbar").innerHTML = display;
+    prevInput = getStatus(input);
+    }
+  </script>
 </head>
 <body>
-	<p>
-	fuck off!
-	</p>
-	<table>
-	<tr><td><div id="textbar"></div></td></tr>
-	<tr>
-		<td><button type="button" accesskey='7' onclick=>7</td>
-		<td><div id="num8">8</td>
-		<td><div id="num9">9</td>
-		<td><div id="div">/ </td>
-	</table>
+ 
+  <div id="textbar">0</div>
+  <table>
+    <tr>
+      <td><button type="button" accesskey='7' onclick= update(7) value='7'>7</button></td>
+      <td><button type="button" accesskey='8' onclick= update(8) value='8'>8</button></td>
+      <td><button type="button" accesskey='9' onclick= update(9) value='9'>9</button></td>
+      <td><button type="button" accesskey='/' onclick= update('/') value='/'>/</button></td>
+      </tr><tr><td><button type="button" accesskey='4' onclick= update(4) value='4'>4</button></td>
+      <td><button type="button" accesskey='5' onclick= update(5) value='5'>5</button></td>
+      <td><button type="button" accesskey='6' onclick= update(6) value='6'>6</button></td>
+      <td><button type="button" accesskey='*' onclick= update('*') value='*'>*</button></td>
+      </tr><tr><td><button type="button" accesskey='1' onclick= update(1) value='1'>1</button></td>
+      <td><button type="button" accesskey='2' onclick= update(2) value='2'>2</button></td>
+      <td><button type="button" accesskey='3' onclick= update(3) value='3'>3</button></td>   
+      <td><button type="button" accesskey='-' onclick= update('-') value='-'>-</button></td>
+      </tr><tr><td><button type="button" accesskey='0' onclick= update(0) value='0'>0</button></td>
+      <td><button type="button" accesskey='=' onclick= update('=') value='='>=</button></td>
+      <td><button type="button" accesskey='c' onclick= update('c') value='c'>C</button></td>
+      <td><button type="button" accesskey='+' onclick= update('+') value='+'>+</button></td>  
+	</tr></table>
 </body>
