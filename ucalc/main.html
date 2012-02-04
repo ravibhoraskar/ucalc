@@ -1,5 +1,15 @@
+<html>
 <head>
+<script src="jquery-1.7.1.min.js"></script>
   <script type="text/javascript">
+	$(document).keypress(function(e) {
+	  var keypressed = String.fromCharCode(e.which);
+	  if(keypressed==0||keypressed=='1'||keypressed=='2'||keypressed=='3'||keypressed=='4'||keypressed=='5'||keypressed=='6'||keypressed=='7'||keypressed=='8'||keypressed=='9'||keypressed=='+'||keypressed=='-'||keypressed=='*'||keypressed=='/'||keypressed=='C'||keypressed=='c'||keypressed=='=')
+	{
+		//alert('gottit');
+		update(keypressed);
+	}
+	});
     function up()
     {
     alert("hi");
@@ -106,14 +116,22 @@
     prevInput = getStatus(input);
     }
   </script>
+
+<style>
+body {font-size:200%;}
+h1 {font-size:2.5em;}
+h2 {font-size:1.875em;}
+p {font-size:0.875em;}
+</style>
 </head>
 <body>
- 
+ <center>
+<font size=7>
   <div id="textbar">0</div>
   <table>
     <tr>
-      <td><button type="button" accesskey='7' onclick= update(7) value='7'>7</button></td>
-      <td><button type="button" accesskey='8' onclick= update(8) value='8'>8</button></td>
+      <td><button type="button" accesskey=S onclick= update(7) value='7'><font size =6>7</font</button></td>
+      <td><button type="button" accesskey=8 onclick= update(8) value='8'>8</button></td>
       <td><button type="button" accesskey='9' onclick= update(9) value='9'>9</button></td>
       <td><button type="button" accesskey='/' onclick= update('/') value='/'>/</button></td>
       </tr><tr><td><button type="button" accesskey='4' onclick= update(4) value='4'>4</button></td>
@@ -129,4 +147,6 @@
       <td><button type="button" accesskey='c' onclick= update('c') value='c'>C</button></td>
       <td><button type="button" accesskey='+' onclick= update('+') value='+'>+</button></td>  
 	</tr></table>
+<center>
 </body>
+</html>
